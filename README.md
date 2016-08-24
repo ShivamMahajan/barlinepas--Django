@@ -56,8 +56,7 @@ Application Setup
      python ./manage.py runserver {ip}:{port}
 
 
-#Raj Comments
-#You just take the update of code from GIT and meke few changes which I have put bellow:-
+
 
 
 Requirements Applications
