@@ -1,0 +1,425 @@
+{% load mathfilters %}
+<div class="clearfix"></div>
+<div id="content">
+<div class="container-fluid myAcc-user left-right-pd">
+    <div class="container left-right-pd">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12 left-right-pd">
+            <div class="tab_outer">
+                <div id="warn_box" style="left: 7.5px; display: block; text-align: center; width: 100%;">
+                    <div class="success" style="color:green; font-weight:bold;"></div>
+                    <div class="warning"></div>
+                    <div class="error" style="color:red; font-weight:bold;"></div>
+                </div>
+              <!-- Nav tabs -->
+              <ul class="nav nav-tabs responsive-tabs">
+                <li class="active"><a href="#myacc" >My Account</a></li>
+                <li><a href="#booking">My Bar</a></li>
+                <li><a href="#history">Booking Detail</a></li>
+              </ul>
+
+              <!-- Tab panes -->
+              <div class="tab-content left-right-pd">
+                <div class="tab-pane active" id="myacc"  ng-controller="blpAppVenueDetailsController">
+                    <input type="hidden" id="selectedCity" value="[[blp_merchant_city]]" />
+                    <div class="bar-myacc-inner">
+                        <div class="row ">
+                        <div class="col-md-12 col-sm-12 col-xs-12 ">
+                            <div class="row input-outer">
+                                <div class="form-group col-md-4 col-sm-12 col-xs-12 ">
+                                     <label>Bar Name<span class="field-required">*</span></label>
+                                </div>
+                                <div class="form-group col-md-8 col-sm-12 col-xs-12">
+                                <input class="form-control" placeholder="Bar Name" id="venueName" type="text" value="[[blp_merchant_name]]" />
+
+                                </div>
+                            </div>
+                            <div class="row input-outer">
+                                <div class="form-group col-md-4 col-sm-12 col-xs-12 ">
+                                     <label>Address<span class="field-required">*</span></label>
+                                </div>
+                                <div class="form-group col-md-8 col-sm-12 col-xs-12">
+                                <input type="text" class="form-control" id="venueAddress" placeholder="Venue Address" value="[[blp_merchant_address]]">
+
+                                </div>
+                            </div>
+                            <div class="row input-outer">
+                                <div class="form-group col-md-4 col-sm-12 col-xs-12 ">
+                                     <label>City<span class="field-required">*</span></label>
+                                </div>
+                                <div class="form-group col-md-8 col-sm-12 col-xs-12">
+                                  <select class="form-control" id="venueCity" ng-options="option.title for option in cities track by option.value" ng-model="currentCity">
+                                        <option value="select">Venue City</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row input-outer">
+                                <div class="form-group col-md-4 col-sm-12 col-xs-12 ">
+                                     <label>State<span class="field-required">*</span></label>
+                                </div>
+                                <div class="form-group col-md-8 col-sm-12 col-xs-12">
+                                <input type="text" class="form-control" id="venueState" placeholder="State" value="[[blp_merchant_state]]">
+                                </div>
+                            </div>
+                            <div class="row input-outer">
+                                <div class="form-group col-md-4 col-sm-12 col-xs-12 ">
+                                     <label>Zip Code<span class="field-required">*</span></label>
+                                </div>
+                                <div class="form-group col-md-8 col-sm-12 col-xs-12">
+                                <input type="text" class="form-control" id="venueZip" placeholder="Zip Code" value="[[blp_merchant_zip]]">
+                                </div>
+                            </div>
+                            <div class="row input-outer">
+                                <div class="form-group col-md-4 col-sm-12 col-xs-12 ">
+                                     <label>Phone Number<span class="field-required">*</span></label>
+                                </div>
+                                <div class="form-group col-md-8 col-sm-12 col-xs-12">
+                                <input type="text" class="form-control" id="venuePhoneNumber" placeholder="Phone Number" value="[[blp_merchant_phone_number]]">
+                                </div>
+                            </div>
+                            <div class="row input-outer">
+                                <div class="form-group col-md-4 col-sm-12 col-xs-12 ">
+                                     <label>Email Address</label>
+                                </div>
+                                <div class="form-group col-md-8 col-sm-12 col-xs-12">
+                                <input class="form-control" placeholder="Venue Email" type="email"  id="venueEmail" value="[[blp_merchant_email]]" />
+
+                                </div>
+                            </div>
+                            <div class="row input-outer">
+                                <div class="form-group col-md-4 col-sm-12 col-xs-12 ">
+                                     <label>Registration Date</label>
+                                </div>
+                                <div class="form-group col-md-8 col-sm-12 col-xs-12">
+                                 <label>[[blp_merchant_created_date]]</label>
+
+                                </div>
+                            </div>
+                            <div class="row textareaInput venueDescriptionDiv">
+                                <div class="form-group col-md-4 col-sm-12 col-xs-12 ">
+                                     <label>Description<span class="field-required">*</span></label>
+                                </div>
+                                <div class="form-group col-md-8 col-sm-12 col-xs-12">
+                                  <textarea ckeditor="editorOptions" ng-model="venueDescription"  class="form-control" placeholder="Tell bargoers a little about your venue." id="venueDescription">[[blp_merchant_description]]</textarea>
+                                </div>
+                            </div>
+                            <div class="row text-center">
+                                <div class="form-group col-md-12 col-sm-12 col-xs-12 ">
+                                    <button class="btn-blue-outline btn-save hvr-radial-out mrgR20" ng-click="updateVenueDetails()">Save</button>
+                                    <button data-toggle="modal" data-target="#myVenueModal" class="btn-blue-outline btn-save hvr-radial-out">Change Password</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                        <!-- Modal -->
+                        <div class="modal fade venue-login chgPass" id="myVenueModal" role="dialog">
+                            <div class="modal-dialog text-center">
+                                <!-- Modal content-->
+                                <div class="modal-content">
+                                    <button type="button" class="closeImg" data-dismiss="modal"><img src="/static/img/close-icon.png" alt="Image"></button>
+                                    <div class="VenueLogin">
+                                        <div class="row">
+                                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                                <h1>Change Password</h1>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                                <ul class="underline">
+                                                    <li></li>
+                                                    <li></li>
+                                                    <li></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div id="popup_warn_box" style="left: 7.5px; display: block; text-align: center; width: 100%;">
+                                            <div class="success" style="color:green;"></div>
+                                            <div class="warning"></div>
+                                            <div class="error" style="color:red;"></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                                <div class="form-group">
+                                                    <input type="password" class="form-control" id="oldPassword" placeholder="Old Password">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                                <div class="form-group">
+                                                    <input type="password" class="form-control" id="newPassword" placeholder="New Password">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                                <div class="form-group">
+                                                    <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                                <button class="btn-blue hvr-sweep-to-top" ng-click="changeVenuePass()">SAVE</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End Modal -->
+                    </div>
+                </div>
+                <div ng-controller="blpAppVenueController" class="tab-pane" id="booking">
+                    <div class="barOwner-outer">
+                        <ul class="nav nav-tabs responsive-tabs" role="tablist">
+                        <li class="active"><a href="#ImageBar">Images</a></li>
+                        <li><a href="#PricingBar" >Standard Weekly Pricing </a></li>
+                        <li><a href="#calenderBar" >Calendar of Events</a></li>
+                      </ul>
+                        <div class="tab-content left-right-pd">
+                        <div class="tab-pane active" id="ImageBar">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <div class="col-md-4 col-sm-12 col-xs-12" ng-repeat="photo in photos">
+                                        <div class="thumBarImg-outer">
+                                            <div class="thumBarImg-div">
+                                                <img src="[[getPhotoLink(photo)]]" alt="Image">
+                                            </div>
+                                            <div ng-click = "removePhotoVenue(photo.pk)" class="IconCls"><a href="#" title=""><img src="/static/img/close-icon.png" alt="Close Icon"></a></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12 col-xs-12 text-center">
+                                    <button class="btn-blue-outline hvr-radial-out mt10" id= "uploadPhotoStartid" ng-click="uploadPhotoStart()" >UPLOAD NEW</button>
+                                    <button class="btn-blue-outline hvr-radial-out mt10" id= "uploadPhotoid" style= "display:none" ng-click="uploadPhoto()" >UPLOAD NEW</button>
+                                </div>
+                            </div>
+
+                            <!-- D&D Markup -->
+                            <div class="">
+                                <input id="photoUpload" onchange = "changePhotoUpload" type="file" class="file" size="1">
+                                <div class="">
+                                </div>
+                                <div class="">
+                                    <img  src="" align="middle" alt="" title="browse"/>
+                                </div>
+                            </div>
+                           <!-- /D&D Markup -->
+                        </div>
+
+                        <div class="tab-pane" id="PricingBar">
+                            <div class="PricingBar-outer">
+                                <h3> Standard Weekly Pricing</h3>
+                                <p>Here you will input the number of BLP passes and price you will offer on a weekday basis. These price and quantities will be kept every week until you update this section.</p>
+                                <div class="PricingBar-table">
+
+                                    <table >
+                                        <tr ng-repeat="day in enumeratedDays">
+                                            <td width="25%"> [[day.name]]</td>
+                                            <td width="37.5%">
+                                                <span class="qnty-pbar">Qnty</span>
+                                                <span class="input-pbar">
+                                                    <div class="form-group">
+                                                        <input type="text" id="[[day.name]]_qty" class="form-control" placeholder="Quantity"  value="[[getMerchantDayPricing(day)]]"/>
+                                                    </div>
+                                                </span>
+                                            </td>
+                                            <td width="37.5%">
+                                                <span class="qnty-pbar">Price</span>
+                                                <span class="input-pbar">
+                                                    <div class="form-group">
+                                                        <input type="text" class="form-control" id="[[day.name]]_pricing" placeholder="Price" value="[[getMerchantDayQuantity(day)]]"/>
+                                                    </div>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div class="row">
+                                <div class="col-md-12 col-sm-12 col-xs-12 text-center">
+                                    <button ng-click="saveListingDays()"  class="btn-blue-outline hvr-radial-out">SAVE</button>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+
+                        <div class="tab-pane" id="calenderBar">
+                            <div class="bar-calendarTop">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <h3>Calender Of Events</h3>
+                                    <p>This calendar allows you to change the quantity and price for BLP’s offered for specific days. For example, on Halloween you may want to increase the price and quantity of BLP’s offered by your venue. To do that, click October 31st, change the Quantity/Price, write a description of the event, and click save. This will trump your price and quantity set in “Standard Weekly Pricing</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bar-Newcalendar">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <h3>Calender Of Events</h3>
+                                    <div class="NewcalendarForm">
+                                        <div class="row input-outer">
+                                            <div class="form-group col-md-4 col-sm-12 col-xs-12 ">
+                                                 <label>Event Name</label>
+                                            </div>
+                                            <div class="form-group col-md-8 col-sm-12 col-xs-12">
+                                                <input type="hidden" required  id="addSingleDay_id" class="form-control">
+                                                <input type="text" required id="addSingleDay_name" class="form-control">
+                                                <span class="error venueError" id ="addSingleDay_name_error"></span>
+                                            </div>
+                                        </div>
+                                        <div class="row input-outer">
+                                            <div class="form-group col-md-4 col-sm-12 col-xs-12 ">
+                                                 <label>Description</label>
+                                            </div>
+                                            <div class="form-group col-md-8 col-sm-12 col-xs-12">
+                                                <input type="text" required id="addSingleDay_description" class="form-control">
+                                                <span class="error venueError" id ="addSingleDay_description_error"></span>
+                                            </div>
+                                        </div>
+
+                                        <div class="row input-outer">
+                                            <div class="form-group col-md-4 col-sm-12 col-xs-12 ">
+                                                 <label>Event Date</label>
+                                            </div>
+                                            <div class="form-group col-md-8 col-sm-12 col-xs-12">
+                                                <div required id="datetimepicker2" class="input-group date">
+                                                    <input type="text" class="form-control addSingleDay_datepicker" id="addSingleDay_date" >
+                                                    <span class="input-group-addon addSingleDay_datepickers">
+                                                    <span class="glyphicon glyphicon-calendar"></span>
+                                                    </span>
+
+                                                </div>
+                                                <span class="error venueError" id ="addSingleDay_date_error"></span>
+                                            </div>
+                                        </div>
+
+                                        <div class="row input-outer">
+                                            <div class="form-group col-md-4 col-sm-12 col-xs-12 ">
+                                                 <label>Quantity</label>
+                                            </div>
+                                            <div class="form-group col-md-8 col-sm-12 col-xs-12">
+                                                <input type="text" required id="addSingleDay_quantity" class="form-control">
+                                                <span class="error venueError" id ="addSingleDay_quantity_error"></span>
+                                            </div>
+                                        </div>
+
+                                        <div class="row input-outer">
+                                            <div class="form-group col-md-4 col-sm-12 col-xs-12 ">
+                                                 <label>Amount</label>
+                                            </div>
+                                            <div class="form-group col-md-8 col-sm-12 col-xs-12">
+                                                <input type="text" required  id="addSingleDay_price" class="form-control">
+                                                <span class="error venueError" id ="addSingleDay_price_error"></span>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="form-group col-md-4 col-sm-12 col-xs-12 ">
+                                                &nbsp;
+                                            </div>
+                                            <div class="col-md-8 col-sm-12 col-xs-12 text-center mt5">
+                                                <button  ng-click="saveSingleListingDays()" class="btn-blue-outline hvr-radial-out">SAVE</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bar-addEvent">
+                            <h3>Added Events</h3>
+                            <div class="table-booking">
+                                <table cellpadding="0" cellspacing="0">
+                                    <tr>
+                                        <th>Event Name</th>
+                                        <th>Date</th>
+                                        <th>Description</th>
+                                        <th>Quantity</th>
+                                        <th>Amount</th>
+                                        <th>Action </th>
+
+                                    </tr>
+                                    <tr ng-repeat="listing in listingEvents">
+                                        <td> [[listing.fields.blp_merchant_event_name]] </td>
+                                        <td> [[listing.fields.blp_merchant_event_date | date:'MM-dd-yyyy']] </td>
+                                        <td> [[listing.fields.blp_merchant_event_description]] </td>
+                                        <td> [[listing.fields.blp_merchant_event_qty]] </td>
+                                        <td> $[[listing.fields.blp_merchant_event_unit_pricing]] </td>
+                                        <td> <a href="javascript:;" ng-click= "getSingleListingData(listing.fields.blp_merchant_event_date)"title="Edit">Edit</a></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+
+                        </div>
+                      </div>
+                    </div>
+
+                </div>
+                <div class="tab-pane" id="history" ng-controller="blpAppBookingDetailsController">
+                    <div class="bdeatil2">
+                    <h3>Bookings List</h3>
+                    <div class="table-booking">
+
+                        <table id= "bookinglist" cellpadding="0" cellspacing="0">
+                            <tr>
+                                <th>Date of sale</th>
+                                <th>Buyer name</th>
+                                <th>Buyer email</th>
+                                <th>No. of tickets purchased</th>
+                                <th>Amount processed</th>
+                            </tr>
+                            {% if soldTicketsList %}
+                               {% for e in soldTicketsList %}
+                               <tr  style="cursor: pointer;" ng-click="getVenueBookingDetails({{e.pk}});">
+                                   <td> {{ e.blp_merchant_event_sale_payment_date|date:"m-d-Y H:m:s" }} </td>
+                                   <td> {{ e.blp_customer.blp_customer_first_name }} {{e.blp_customer.blp_customer_last_name}} </td>
+                                   <td> {{ e.blp_customer.blp_customer_email }} </td>
+                                   <td> {{ e.blp_merchant_event_sale_qty }} </td>
+                                   <td>${{ e.blp_merchant_event_sale_amount }}</td>
+                                </tr>
+                               {% endfor %}
+                            {% endif %}
+                        </table>
+                    </div>
+                    </div>
+                    <div class="bdeatil2">
+                        <h3>Booking Details</h3>
+                        <div class="table-booking">
+                            <table cellpadding="0" cellspacing="0">
+                                <tr>
+                                    <th>Sale Date/Time</th>
+                                    <th>Ticket Date</th>
+                                    <th>Ticket Number</th>
+                                    <th>Scanned Date/Time</th>
+                                    <th>Ticket Status</th>
+                                </tr>
+                                <tr ng-repeat="booking_detail in blp_customer_booking_details_data"  >
+                                    <td>[[booking_detail.fields.blp_merchant_event_sale_payment_date | date : 'MM-dd-yyyy HH:mm:ss']]</td>
+                                    <td>[[booking_detail.fields.blp_merchant_event_sale_date | date : 'MM-dd-yyyy']]</td>
+                                    <td>[[booking_detail.fields.blp_merchant_event_sale_qty_number]]</td>
+                                    <td>[[booking_detail.fields.blp_merchant_event_sale_scan_date | date : 'MM-dd-yyyy HH:mm:ss']]</td>
+                                    <td>[[booking_detail.fields.blp_merchant_event_sale_scan_status]]</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<script>
+$('.responsive-tabs').responsiveTabs({
+  accordionOn: ['xs', 'sm']
+});
+</script>

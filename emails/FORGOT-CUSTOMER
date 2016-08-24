@@ -1,0 +1,3 @@
+<h2>Hello {blp_customer_first_name} {blp_customer_last_name},</h2>
+  <p>Please click <a href="{url}user/reset?hash={hash}">here</a> to reset your
+   password for BarLinePass.</p>

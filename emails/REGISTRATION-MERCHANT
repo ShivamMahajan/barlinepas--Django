@@ -1,0 +1,14 @@
+<div>
+	<h4>Hey {blp_merchant_name},</h4>
+
+	<h4>Welcome to BarLinePass! We're happy to have you as our newest venue.</h4>
+
+	<h4>BarLinePass was built to create a new stream of revenue, while providing your customers an easy way into their favorite venue.</h4>
+
+	<h4>Please verify your email <a href="{url}user/activate?mid={blp_merchant_random_string}">here</a> (you MUST do this before accepting passes)
+	Contact the BLP team if you have any questions setting up your venue profile <a href="mailto:support@barlinepass.com?Subject=Hello%20Support" target="_top">here</a></h4>
+
+	<h4>Cheers!</h4>
+	<h4>BarLinePass</h4>
+	<h4>The party does not wait for you, so why wait to get in?</h4>
+</div>

@@ -1,0 +1,81 @@
+<div id="content">
+<div class="container venue-login" ng-controller="blpAppLoginController">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-12 text-center">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <h1>Venue Registration</h1>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <ul class="underline">
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                        </ul>
+                    </div>
+                </div>
+                <div id="warn_box" style="left: 7.5px; display: block; text-align: center; width: 100%;">
+                    <div class="success" style="color:green;"></div>
+                    <div class="warning"></div>
+                    <div class="error" style="color:red;"></div>
+                </div> 
+                <form>
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                <input class="form-control" placeholder="Venue Name" id="registerVenueName" type="text" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                <input class="form-control" placeholder="Venue Email" id="registerVenueEmail" type="text" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                <input class="form-control" placeholder="Venue Phone Number" id="registerVenuePhoneNumber" type="text" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                <select class="form-control" id="registerVenueCity" ng-options="option.title for option in cities track by option.value" ng-model="currentCity">
+                                  <option value="select">Venue City</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                <input class="form-control" placeholder="Venue Password" id="registerVenuePassword" type="password" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="form-group">
+                                <input class="form-control" placeholder="Confirm Password" id="registerVenueConfirmationCode" type="password" />
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <button class="btn-blue hvr-sweep-to-top" name="send" ng-click="registerVenue()" type="submit">Register Venue</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+</div>
+    <div class="mt40"></div>
+    </div>
+    </div>

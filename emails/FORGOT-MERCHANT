@@ -1,0 +1,3 @@
+<h2>Hello {blp_merchant_name},</h2>
+  <p>Please click <a href="{url}user/reset_venue?hash={hash}">here</a> to reset your
+   password for BarLinePass.</p>

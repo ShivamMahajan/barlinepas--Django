@@ -1,0 +1,166 @@
+BarlinePass application setup, env for Window 7
+================================================================
+
+Requirements
+----------------------------------------------------------------
+
+we need to install below mentioned version of python, pip & django
+
+  + Python 2.7
+  + PIP
+  + Django 1.8.1
+
+----------------------------------------------------------------
+
+follow below mentioned steps for database connectivity 
+  Step 1:-  we need to create database 
+  Step 2:-  Get database details/cridentials and change below mention code
+
+    File Path   :-  "/barlinepass/settings/default.py"
+    Line No     :-  73 - 81
+    Below is code  :
+
+      DATABASES = {
+          'default': {
+              'ENGINE': 'django.db.backends.mysql',
+              'NAME': 'barlinepass',
+              'USER': 'root',
+              'PASSWORD': '',
+              'HOST': '127.0.0.1',
+          }
+      }
+
+    NAME : NAME should be database name like "barlinepass"
+    USER : USER should be database username like "root"
+    PASSWORD : PASSWORD should be database password like ""
+    HOST : HOST should be name of the database host/server like "127.0.0.1"
+
+----------------------------------------------------------------
+Required Packages Installation:-
+  
+  Please install all these dependancies, if any error will occur during the installation than please relative packages on google.
+
+    pip install django==1.8.1
+
+    pip install Pillow==2.2.1
+
+    pip install paypalrestsdk==1.11.5
+
+    pip install facebook-sdk==0.4.0
+
+    pip install django-extensions==1.5.9
+
+    pip install django-compressor==1.6.0
+
+    pip install django-bootstrap3==6.2.2
+
+    pip install requests==1.0.0
+
+    pip install pyqrcode
+
+    pip install django-mathfilters
+
+    brew install libjpeg
+
+
+  If you want to migrate database than you need to run below mentioned command
+
+    python manage.py makemigrations
+
+    python manage.py migrate
+
+
+After the all installations you need to change in below mentioned files as per our application:
+
+----------------------------------------------------------------
+
+  1). Need to change in config.json file these changes depend upon your project location, url etc please follow below details.
+
+    File Path   :-  "/barlinepass/config.json"
+    Line No     :-  2, 3, 6 & 7
+    Below Code  :
+
+      "root_dir": "/opt/lampp/htdocs/barlinepass/",
+      "root_url": "https://barlinepass.com/",
+      "filter_file": "/opt/lampp/htdocs/barlinepass/needed/fields.json",
+      "nav_file": "/opt/lampp/htdocs/barlinepass/needed/nav.json",
+
+----------------------------------------------------------------
+
+  2). Need to change Paypal, SMTP server, facebook app ID. Please follow below details.
+
+    File Path   :-  "/barlinepass/config.json"
+    File Name   :-  "config.json"
+    Line No     :-  22(fb), 17-21(paypal), 11-14(SMTP)
+    Below Code  :
+
+      I). Change for Facebook:
+
+        File Path   :-  "/barlinepass/config.json"
+        Line No :- 22
+        Below is code:
+
+          "facebook_app_id": "1679651625646726",
+
+      II). Change for Paypal:
+
+        File Path   :-  "/barlinepass/config.json"
+        Line No :- 17-21
+        Below is code:
+
+          "paypal_mode": "sandbox",
+          "paypal_live_client_id": "Ace_64NBAVPEy0RYRmgfdHnAa69yrMe8zLuo4_XN3FRvuxnoSpEmOb1TKm6MKhga0RTqhKZWQb4qu78h",
+          "paypal_live_client_secret": "EBhHEpmYZet_lfBpBmBDOxPUB-k_b-UPs35JIKgFZOJ7BdRd6brsKY25htjsALMXLI3lqAZXGIoW9R4Z",
+          "paypal_sandbox_client_id": "AdGbzVN8kAnR2mk1vu-kn30ehxlBma-uwAGzQS8vVE0pzAQT_T25m6EiPzBmwiEYyEYyGzmMPv3RCDQe",
+          "paypal_sandbox_client_secret": "EBSTGIt3G4SUK8oLLEgJ4OgeXvRABWL_kDckD4aPYxvRC2KPPqikAW0mbTeF6EVFoWhs1G7_fcYtmUez",
+
+      III). Change for SMTP:
+      
+        File Path   :-  "/barlinepass/config.json"
+        Line No :- 11-14
+        Below is code:
+
+          "smtp_host": "smtp.gmail.com",
+          "smtp_port": 25,
+          "smtp_username": "accounts@raisingkarma.com",
+          "smtp_password": "secret11",
+
+
+
+----------------------------------------------------------------
+  3). Need few changes in "/barlinepass/third/static-assets/app.js" file.
+
+    if your server is secure then replace "http://"+ to "https://"+
+
+      File Path :- /barlinepass/third/static-assets/app.js
+      Line no :- 50
+      Below is code:
+
+        blpApp.baseUrl = "https://"+ document.location.host+"/";
+
+    also you can change your facebook App id into same file "/barlinepass/third/static-assets/app.js"
+
+      File Path :- /barlinepass/third/static-assets/app.js
+      LIne no :- 54
+      Below is code:
+       
+        "socialAppId": "1679651625646726",
+
+----------------------------------------------------------------
+
+Now you can run the server e.g:-
+  Run below mention command:
+
+    python manage.py runserver 0.0.0.0:80
+
+  if you want to run server in background than you can use below command:
+
+    sudo nohup python manage.py runserver 0.0.0.0:80
+
+
+
+
+
+
+
+

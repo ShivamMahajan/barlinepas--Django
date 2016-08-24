@@ -1,0 +1,107 @@
+<link href="/static/css/font-awesome.css" rel="stylesheet">
+<link href="/static/css/flexslider.css" rel="stylesheet">
+<div id="content" ng-controller="blpAppBarListingController">
+<div id="content">
+<div class="container-fluid bg-grey">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1 col-sm-12 col-xs-12">
+                <ul class="field-select">
+                   <li>
+                      <select class="form-control location" id="city" ng-options="option.title for option in cities track by option.value" ng-model="currentCity">
+                          <option> New York </option>
+                      </select>
+                   </li>
+                   <li>
+                      <select class="form-control role"  id="qty" ng-options="option.title for option in quantities track by option.value" ng-model="currentQuantity">
+                          <option>No. Of Passes</option>
+                      </select>
+                   </li>
+                    <li>
+                      <input class="form-control calender" id="date" value= "{{ selected_date1 }}" type="text" readonly />
+                      <!-- <input type = "hidden" value= "{{ selected_date1 }}" id = "selected_date_header" readonly /> -->
+                       <div class="drop-Btn"><img src="/static/img/arrow-g.jpg"> </div>
+                    </li>
+                    <li>
+                        <button class="btn-blue" ng-click="getResults()">Search</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+<div class="container content" ng-controller="blpAppListingsController">
+    <div id="warn_box" style="left: 7.5px; display: block; text-align: center; width: 100%;">
+        <div class="success" style="color:green; font-weight:bold;"></div>
+        <div class="warning"></div>
+        <div class="error" style="color:red; font-weight:bold;"></div>
+    </div>
+    <div class="row mb40 bar-thumbs-div">
+        <div class="col-md-12 col-sm-12 col-xs-12 mt40">
+            <div ng-repeat="bar in bars"  class="[[bar.selected]] col-md-4 col-sm-12 col-xs-12 thm-mrg">
+                   <div class="thumImg-outer">
+                       <div class="thumImg-div">
+                           <a  href="/listing/view?venue_id=[[bar.merchant.pk]]"><img src="/media/[[bar.photos.mainPhoto]]" alt="Image"/></a>
+                       </div>
+                       <div class="thumImg-Text">
+                           <a  href="/listing/view?venue_id=[[bar.merchant.pk]]" class="reservationstaring hvr-underline-from-center">[[bar.merchant.fields.blp_merchant_name]]</a>
+                           <p>[[bar.merchant.fields.blp_merchant_address]]&nbsp;</p>
+                           <p>[[bar.merchant.fields.blp_merchant_city]]</p>
+                       </div>
+                       <button ng-click="gotcha(bar.merchant.fields.blp_merchant_name,bar.merchant.fields.blp_merchant_address,bar.merchant.fields.blp_merchant_city,bar.merchant.pk)" class="btn-blue-outline btn-save hvr-radial-out" >Reserve Now </button>
+                   </div>
+               </div>
+           </div>
+   </div>
+
+
+
+        <div class="col-md-12 col-sm-12 col-xs-12 content-right bar-details-div" style="padding-top: 0px; padding-bottom: 40px;">
+            <div class="no-results no-msg" ng-style="showNoBars">
+            <div class="left right inner-border all inner-padding top bottom inner-margin">
+                <h2>No results available...</h2>
+            </div>
+            </div>
+ </div>
+    </div>
+</div>
+</div>
+</div>
+
+
+<!---Flexslider-Script--->
+<script defer src="/static/js/jquery.flexslider.js"></script>
+<script type="text/javascript">
+    $(function(){
+      //SyntaxHighlighter.all();
+    });
+    jQuery(document).ready(function(){
+
+    });
+  </script>
+
+  <script type="text/javascript" charset="utf-8">
+    jQuery(window).load(function() {
+      jQuery('#carousel').flexslider({
+        animation: "slide",
+        controlNav: false,
+        animationLoop: false,
+        slideshow: false,
+        itemWidth: 126,
+        itemMargin: 5,
+        asNavFor: '#slider'
+      });
+
+      jQuery('#slider').flexslider({
+        animation: "slide",
+        controlNav: false,
+        animationLoop: false,
+        slideshow: false,
+        sync: "#carousel",
+        start: function(slider){
+          jQuery('body').removeClass('loading');
+        }
+      });
+  });
+  </script>

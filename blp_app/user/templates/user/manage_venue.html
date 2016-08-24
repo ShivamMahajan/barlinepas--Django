@@ -1,0 +1,177 @@
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<div ng-controller="blpAppVenueController">
+
+    <div class="container-fluid bg-grey">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <h4>Welcome!</h4>
+                    <h2>[[getUsername()]]</h2>
+                </div>
+        </div>
+    </div>
+        </div>
+    <div class="container content">
+        <div id="warn_box" style="left: 7.5px; display: block; text-align: center; width: 100%;">
+            <div class="success" style="color:green; font-weight:bold;"></div>
+            <div class="warning"></div>
+            <div class="error" style="color:red; font-weight:bold;"></div>
+        </div>
+        <div class="row  mb40">
+            <div class="col-md-3 col-sm-12 col-xs-12 mt40">
+                <div class="row">
+                    Total tickets sold = {{totalTicketsSold}}
+                </div>
+                <div class="row">
+                    Total tickets scanned = {{totalTicketsScanned}}
+                </div>
+                <div class="row">
+                    Available tickets = {{totalTicketsAvailable}}
+                </div>
+                {% if soldTicketsList %}
+                   There are {{ soldTicketsList|length }} records:
+                   {% for e in soldTicketsList %}
+                      <td> {{ e.blp_merchant.id }} </td>
+                      <td> {{ e.blp_customer.blp_customer_first_name }} {{e.blp_customer.blp_customer_last_name}} </td>
+                   {% endfor %}
+                {% else %}
+                   There are no records in the system
+                {% endif %}
+            </div>
+        </div>
+        <div class="row  mb40">
+          <div id="manageVenueTabs">
+        <ul>
+          <li><a href="#tabs-1">Upload Photo</a></li>
+          <li><a href="#tabs-2">Event Pricing</a></li>
+          <li><a href="#tabs-3">Calendar of Events</a></li>
+        </ul>
+        <div id="tabs-1">
+
+            <div class="col-md-12 col-sm-12 col-xs-12 mt40">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12 ">
+                        <div class="border-bottom-grey">
+                        <img src="/static/img/icon-camera.png" alt="">
+                        <h4>Upload Photos</h4>
+                        <p>Add photos of your bar</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12 text-center">
+                            <!-- D&D Markup -->
+                            <div class="fileinputs">
+                                <input id="photoUpload" type="file" class="file" size="1">
+                                <div class="fakefile" style="left: 0%; top: 11%;" ng-repeat="photo in photos">
+                                    <img src="[[getPhotoLink(photo)]]" width="88%" height="197px;" align="middle" alt="browse" title="browse"/>
+                                </div>
+                                <div class="fakefile">
+                                    <img src="/static/img/icon-add.png" align="middle" alt="browse" title="browse"/>
+                                </div>
+                            </div>
+                           <!-- /D&D Markup -->
+                        <button class="btn-blue-outline btn-upload hvr-radial-out" ng-click="uploadPhoto()" >UPLOAD</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12 "></div>
+                </div>
+            </div>
+
+        </div>
+        <div id="tabs-2">
+            <div class="col-md-6 col-sm-12 col-xs-12 mt40">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <div class="border-bottom-grey">
+                                        <img src="/static/img/icon-event.png" alt="">
+                                        <h4>Event Pricing</h4>
+                                        <p>Set pricing for specific days of the week</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row event-pricing">
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+
+                                    <span ng-repeat="day in enumeratedDays">
+                                        <div class="row">
+                                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                                <h4>[[day.name]]</h4>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                                                <label>Quantity</label>
+                                                <input type="text" class="form-control" id="[[day.name]]_qty" placeholder="Quantity"  value="[[getMerchantDayPricing(day)]]">
+                                            </div>
+                                            <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                                                <label>Price</label>
+                                                <input type="text" class="form-control"  id="[[day.name]]_pricing" placeholder="Price" value="[[getMerchantDayQuantity(day)]]">
+                                            </div>
+                                        </div>
+                                    </span>
+                                </div>
+                                <div class="col-md-12 col-sm-12 col-xs-12 text-center">
+                                    <button ng-click="saveListingDays()" class="btn-blue-outline btn-save hvr-radial-out">Save</button>
+                                </div>
+                            </div>
+                        </div>
+
+        </div>
+        <div id="tabs-3">
+            <div class="col-md-9 col-sm-12 col-xs-12 mt40">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12 ">
+                        <div class="border-bottom-grey">
+                            <img src="/static/img/icon-calender02.png" alt="">
+                            <h4>Calendar of Events</h4>
+                            <p>Dates of the events</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt30">
+                    <div class="col-md-3 col-sm-12 col-xs-12 ">
+                        <div class="singledateformdiv" id = "singledateform">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <h4>Schedule for the <span id= "calenderDateSelected">day</span></h4>
+                                </div>
+                                <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                                    <label>Quantity</label>
+                                    <input type="text" class="form-control" required id="addSingleDay_quantity" placeholder="Quantity"  value="">
+                                </div>
+                                <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                                    <label>Price</label>
+                                    <input type="text" class="form-control"  required  id="addSingleDay_price" placeholder="Price" value="">
+                                </div>
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <input type="hidden" class="form-control"  id="addSingleDay_date" placeholder="" value="">
+                                    <button ng-click="saveSingleListingDays()" class="btn-blue-outline btn-save hvr-radial-out">Save</button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-md-6 col-sm-12 col-xs-12 ">
+                        <div style="overflow:hidden;">
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                        <div id="MerchantCalendar"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+      </div>
+
+
+        </div>
+    </div>
+</div>

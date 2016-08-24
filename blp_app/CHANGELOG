@@ -1,0 +1,8 @@
+
+02/09/2016
+---------------------------------------------------------
+
++ Check current user logged in state for every order
++ Fix payment callback URL '&' in parameter
+
+

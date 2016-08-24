@@ -1,0 +1,10 @@
+[{
+  "title": "Users",
+  "value": "Users",
+  "link": "/user/register"
+},
+{
+  "title": "Venues",
+  "value": "Venues",
+  "link": "/user/register_venue"
+}]

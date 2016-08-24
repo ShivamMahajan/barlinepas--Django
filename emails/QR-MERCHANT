@@ -1,0 +1,8 @@
+<div>
+  <h2>Hello, {blp_merchant_name}</h2>
+    <h3>{blp_customer_name} recently purchased an item for your venue</h3>
+    <small>The QR code for this purchase is listed below</small>
+    <img src="{qrcode}" width="150" height="150"/>
+</div>
+
+

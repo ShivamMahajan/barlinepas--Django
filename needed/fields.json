@@ -1,0 +1,63 @@
+[{ "title": "City", "name": "city", "type": "select", "idx": 0,
+    "options": [
+     {
+	 "title": "Washington D.C.",
+	 "value": "Washington",
+         "showcase": true,
+         "imgSrc": "washington-city.jpg"
+     },
+	{
+	  "title": "New York",
+	  "value": "New York",
+          "showcase": true,
+          "imgSrc": "new-york-city.jpg"
+     } ]
+
+	},
+       {
+		"title": "Quantity",
+		"name": "qty",
+		"type": "select",
+		"idx": 1,
+		"options": [{
+			"title": "No. Of Passes",
+			"value": "guests"
+		 },
+		 {
+			"title": "1 Person",
+			"value": "1 Person"
+		},
+		 {
+			"title": "2 People",
+			"value": "2 People"
+		},
+		{
+			"title": "3 People",
+			"value": "3 People"
+		},
+		{
+			"title": "4 People",
+			"value": "4 People"
+		},
+		{
+			"title": "5 People",
+			"value": "5 People"
+		},
+		{
+			"title": "6 People",
+			"value": "6 People"
+		},
+		{
+			"title": "7 People+",
+			"value": "7 People+"
+		}]
+
+	},
+
+	{
+		"title": "Date",
+		"name": "date",
+		"type": "date",
+		"idx": 2
+	}
+	]

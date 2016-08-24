@@ -1,0 +1,9 @@
+<div>
+	<h4>Hey {blp_customer_first_name} {blp_customer_last_name},</h4>
+	<h4>Welcome to BarLinePass! We're happy to have you as our newest member.</h4>
+	<h4>BarLinePass was created to make planning a night out easier, and we are excited for you to see how it feels to skip the line.</h4>
+	<h4>Contact the BLP team if you have any questions <a href="mailto:support@barlinepass.com?Subject=Hello%20Support" target="_top">here</a></h4>
+	<h4>Cheers!</h4>
+	<h4><b>BarLinePass</b></h4>
+	<h4><b>The party does not wait for you, so why wait to get in?</b></h4>
+</div>

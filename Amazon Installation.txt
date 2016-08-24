@@ -1,0 +1,59 @@
+
+
+Installation Notes -- 
+May 7, 2016; 11 AM
+
+1.  Use AMI ID: amzn-ami-hvm-2016.03.1.x86_64-gp2 (ami-f5f41398)
+2.  Created BLP_KP.pem & an Elastic IP Address
+3.  Upudate domain w/ Elastic IP
+
+4. Install Apps
+   sudo -s
+   yum -y update
+   yum -y install gcc
+   yum -y install libffi.x86_64  ##required for paypalrestsdk
+   yum -y install libffi-devel.x86_64  ##required for paypalrestsdk
+   yum -y install openssl-devel.x86_64  ##required for paypalrestsdk
+   yum -y install libffi-devel  ##specified by raj
+   yum -y install openssl-devel ##specified by raj
+   yum -y install libjpeg-devel ##specified by raj
+   yum -y install git
+   
+   
+   yum -y install mysql
+   yum -y install mysql-server.noarch
+   yum -y install mysql-devel.noarch
+   chkconfig mysqld on
+   service mysqld start
+   mysql_secure_installation
+
+   
+   pip install django==1.8.1
+   pip install Pillow==2.2.1
+   pip install paypalrestsdk==1.11.5
+   pip install facebook-sdk==0.4.0
+   pip install django-extensions==1.5.9
+   pip install django-compressor==1.6.0
+   pip install django-bootstrap3==6.2.2
+   pip install requests==1.0.0
+   pip install pyqrcode
+   pip install django-mathfilters
+   pip install mysql-python
+   pip install supervisor
+   
+   
+   mysql -uroot -p
+   create database blp;
+   create user blp_admin identified by 'blp_admin';
+   grant all on blp.* to blp_admin;
+   exit   
+   
+   
+   exit #from sudo
+   cd ~   
+   git config --global user.name "Muthu Vellayan"
+   git config --global user.email "muthu.vellayan@gmail.com"   
+   git clone https://mvellayan@bitbucket.org/mvellayan/barlinepass.git
+
+   
+   

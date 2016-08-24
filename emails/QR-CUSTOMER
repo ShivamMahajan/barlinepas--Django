@@ -1,0 +1,8 @@
+<div>
+	<h3>Hello {blp_customer_first_name} {blp_customer_last_name},</h3>
+    <h4>Thank you for purchasing a BarLinePass for {blp_merchant_name}</h4>
+    <h4>Please go to the front and show the bouncer your QR code for entry on {event_sale_date}</h4>
+    <h4>QR Code {qrNumber} out of {saleQty}</h4>
+    </br>
+    <img src="{qrcode}" width="150" height="150" alt="QR Code">
+</div>

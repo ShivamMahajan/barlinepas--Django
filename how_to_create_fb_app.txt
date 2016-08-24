@@ -1,0 +1,35 @@
+How to create facebook App:-
+
+1.)    https://developers.facebook.com/
+2.)    Add New App
+3.)    select WWW(website)
+4.)    Enter your App Name->Create a new app ID->fill the contact email 
+and select category->create app ID
+5.)    After that you got these details
+     <script>
+       window.fbAsyncInit = function() {
+         FB.init({
+           appId      : '910229882435783',
+           xfbml      : true,
+           version    : 'v2.6'
+         });
+       };
+
+       (function(d, s, id){
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) {return;}
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/en_US/sdk.js";
+          fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+     </script>
+
+6.)    Tell us about your website site url:- http://barlinepass.com -> 
+click to next button
+7.)    Now your FB App has been created.
+8.)    Now select App and go to the App setting of that app, select 
+Advanced tab and fill site url into "Valid OAuth redirect URIs" this filed and save it.
+9.)    After that please select the App Review menu from left navigation 
+and Make your app public?
+
+10.)    Your App is ready to launch

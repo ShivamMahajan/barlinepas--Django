@@ -1,0 +1,235 @@
+<link href="/static/css/font-awesome.css" rel="stylesheet">
+<link href="/static/css/flexslider.css" rel="stylesheet">
+<meta property="og:url"           content="{{url}}listing/view?venue_id={{ listings.id}}" />
+<meta property="og:type"          content="website" />
+<meta property="og:title"         content="{{ listings.blp_merchant_name }}" />
+<meta property="og:description"   content="{{ listings.blp_merchant_description }}" />
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : "{{ facebook_app_id }}",
+      xfbml      : true,
+      version    : 'v2.6'
+    });
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="clearfix"></div>
+<div id="content">
+<div class="container-fluid myAcc-user" ng-controller="blpAppListingsController">
+	<!-- Your share button code -->
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+				<div class="row">
+					<div class="col-md-7 col-sm-12 col-xs-12"> <!------ slider row start------>
+						{% if picsresults.all %}
+                    	<div id="slider" class="flexslider flexslider-outer" >
+                          <ul class="slides">
+                            {% for picsresult in picsresults %}
+                            <meta property="og:image"   content="{{url}}media/{{picsresult.blp_merchant_photo_filename_large}}" />
+                              <li class="border-none">
+                                <img src="/media/{{picsresult.blp_merchant_photo_filename_large}}" />
+                              </li>
+                          {% endfor %}
+                          </ul>
+                        </div>
+                        <div id="carousel" class="flexslider listItem">
+                          <ul class="slides">
+                            {% for picsresult in picsresults %}
+                              <li>
+                                <img src="/media/{{picsresult.blp_merchant_photo_filename_thumbnail}}" />
+                              </li>
+                          {% endfor %}
+                          </ul>
+                        </div>
+						{% else %}
+						<div id="slider" class="flexslider flexslider-outer" >
+                          <ul class="slides">
+                              <li class="border-none">
+                                <img src="/media/default-photo.jpg" />
+                              </li>
+                          </ul>
+                        </div>
+                        <div id="carousel" class="flexslider listItem">
+                          <ul class="slides">
+                            <li>
+                              <img src="/media/default-photo.jpg" />
+                            </li>
+                          </ul>
+                        </div>
+						{% endif  %}
+					</div> <!------ slider row end------>
+					<div id="warn_box" style="left: 7.5px; display: block; text-align: center; width: 100%;">
+				        <div class="success" style="color:green; font-weight:bold;"></div>
+				        <div class="warning"></div>
+				        <div class="error" style="color:red; font-weight:bold;"></div>
+				    </div>
+					<div class="col-md-5 col-sm-12 col-xs-12"> <!------ Mian date row start------>
+						<div class="reserve-outer">
+							<h3>{{ listings.blp_merchant_name }} </h3>
+							<input type ="hidden" id= "venueaddress" value = "{{ venue }} {{ listings.blp_merchant_address }} {{ listings.blp_merchant_city }}"  />
+              <input type="hidden" value="{{ listings.blp_merchant_name }}" id="merchantName" class="form-control">
+							<div class="row">
+								<div class="col-md-12 col-sm-12 col-xs-12">
+									<div class="row ">
+										<div class="outerDate"> <!------ Outer date row start------>
+											<div class="col-md-3 col-sm-12 col-xs-12 bokingDate"><label>Date</label></div>
+											<div class="col-md-7 col-sm-12 col-xs-12">
+												<div class="form-group">
+													<div class='input-group date' id='datetimepicker2'>
+														<input id="venuedatepicker" readonly value= " {{ selected_date1 }}" type='text' class="form-control" />
+														<span id="venuedatepickerclick"  class="input-group-addon">
+														<span  class="glyphicon glyphicon-calendar"></span>
+														</span>
+													</div>
+												</div>
+											</div>
+										</div><!------ Outer date row end------>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="qntRow">
+									<div class="col-md-12 col-sm-12 col-xs-12">
+										<div class="row qntRowCnt">
+											<div class="col-md-3 col-sm-12 col-xs-12 labelQnt">
+												<label>Quantity</label>
+											</div>
+											<div class="col-md-4 col-sm-12 col-xs-12">
+												<input type="text" placeholder="" value = "{{ qty }}" id="quantityReservation"  class="form-control" />
+											</div>
+											<div class="col-md-2 col-sm-12 col-xs-12">
+												<label>Price</label>
+											</div>
+											<div class="col-md-3 col-sm-12 col-xs-12">
+												<label>$<span id="unitprice">{{ totalprice|floatformat:2 }}</span></label>
+                        <input type="hidden" value="{{ totalprice }}" id="allUnitPrice" class="form-control">
+                        <input type="hidden" value="{{ price }}" id="oneUnitPrice" class="form-control">
+                        <input type="hidden" value="{{ special }}" id="special" class="form-control">
+                        <input type="hidden" value="{{ listings.id }}" id="merchantId" class="form-control">
+                        <input type="hidden" value="{{ listings.blp_merchant_city }}" id="city" class="form-control">
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="row BtnRes" >
+								<div class="col-md-12 col-sm-12 col-xs-12">
+									<button class="btn-blue-outline btn-save hvr-radial-out" ng-click="checkout()">Reserve Now</button>
+								</div>
+							</div>
+						</div>
+					</div><!------ Mian date row end------>
+
+				</div>
+          	</div>
+        </div>
+
+		<div class="row">
+			 <div class="col-md-12 col-sm-12 col-xs-12">
+			 	<div class="row">
+					<div class="col-md-7 col-sm-12 col-xs-12 about-bar">
+					<h2>About</h2>
+					<p>{{ listings.blp_merchant_description|safe }} </p>
+          <div class="fb-share-button"
+        		data-href="{{url}}listing/view?venue_id={{ listings.id}}"
+        		data-layout="button_count">
+        	</div>
+
+					</div>
+					<div class="col-md-5 col-sm-12 col-xs-12">
+						<h2>Location on map</h2>
+
+						<div class="mapDiv">
+							<div id="map_canvas" >
+				              <div >
+				              <ui-gmap-google-map center="map.center" options="options" zoom="map.zoom">
+				                 <ui-gmap-marker ng-repeat="m in markers" coords="m.last_known_location" idkey="m.id"></ui-gmap-marker>
+				                    </ui-gmap-google-map>
+				                </div>
+				            </div>
+                    {{ listings.blp_merchant_address }}, {{ listings.blp_merchant_city }}, {{ listings.blp_merchant_state }}, {{ listings.blp_merchant_pincode }}
+						</div>
+
+					</div>
+				</div>
+			 </div>
+		</div>
+
+		<div class="row simiEvents ">
+			<div class="col-md-12 col-sm-12 col-xs-12 ">
+			<div class="row text-center">
+				{% if similarVenues.all %}
+				<h4>Similiar Events</h4>
+				{% endif  %}
+			</div>
+			<div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+          {% for similarVenue in similarVenues %}
+          {% if forloop.counter <= 3 %}
+            <div class="col-md-4 col-sm-12 col-xs-12 thm-mrg">
+              <div class="thumImg-outer">
+                <div class="thumImg-div">
+                {% if similarVenue.picture|length > 0 %}
+                 <a href= "/listing/view?venue_id={{ similarVenue.id }}"><img alt="Image" src="/media/{{similarVenue.picture}}"></a>
+                {% else %}
+                <a href= "/listing/view?venue_id={{ similarVenue.id }}"><img alt="Image" src="/media/{{default_img}}"></a>
+                {% endif %}
+                </div>
+                <div class="thumImg-Text">
+              <p><a href= "/listing/view?venue_id={{ similarVenue.id }}">{{ similarVenue.blp_merchant_name }}</a></p>
+                  <p>{{ similarVenue.blp_merchant_address }}&nbsp;</p>
+                  <p>{{ similarVenue.blp_merchant_city }}</p>
+
+                </div>
+              </div>
+            </div>
+          {% endif %}
+          {% endfor %}
+				</div>
+			</div>
+        </div>
+		</div>
+    </div>
+</div>
+<div>
+<!---Flexslider-Script--->
+<script defer src="/static/js/jquery.flexslider.js"></script>
+<script type="text/javascript">
+    $(function(){
+      //SyntaxHighlighter.all();
+    });
+    $(window).load(function(){
+      $('#carousel').flexslider({
+        animation: "slide",
+        controlNav: false,
+        animationLoop: false,
+        slideshow: false,
+        itemWidth: 126,
+        itemMargin: 5,
+        asNavFor: '#slider'
+      });
+
+      $('#slider').flexslider({
+        animation: "slide",
+        controlNav: false,
+        animationLoop: false,
+        slideshow: false,
+        sync: "#carousel",
+        start: function(slider){
+          $('body').removeClass('loading');
+        }
+      });
+    });
+  </script>

@@ -1,0 +1,101 @@
+<div id="content"> 
+  <div class="container-fluid banner">
+    <div class="slider-wrapper">
+    <div class="overlay"></div>
+    <div align="center" class="centerVideo">
+       <video autoplay loop muted height="100%" width="100%" poster= "/static/img/video-bg.jpg">
+        <source src="/static/img/nathan_video.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <div class="container containVideo">
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 col-xs-12 text-center">
+            <h1><b>BARLINEPASS</b><br>The party doesn't wait for you,
+                so why wait to get in?</h1>
+        </div>
+    </div>
+        <div class="row ">
+            <div class="col-md-10 col-md-offset-1 col-sm-12 col-xs-12">
+                <ul class="field-select">
+                    <li>
+                <select class="form-control location" id="city" ng-options="option.title for option in cities track by option.value" ng-model="currentCity">
+                    <option> New York </option>
+                </select>
+                    </li>
+                    <li>
+                <select class="form-control role"  id="qty" ng-options="option.title for option in quantities track by option.value" ng-model="currentQuantity">
+                    <option>No. Of Passes</option>
+                </select> 
+                <div id="warn_box" style="left:7.5px; display: block; text-align: center; width: 100%;">
+                    <div class="error" style="color:#ffffff; font-weight:bold;"></div>
+                </div>
+                </li>
+                <li>
+                  <input class="form-control calender" id="date" value="" type="text" readonly />
+                  <div class="drop-Btn"><img src="/static/img/arrow-g.jpg">
+                   </div>
+                </li>
+                <li><button class="btn-blue" ng-click="getResults()">Search</button> </li>
+              </ul>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+<div class="container city">
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12 text-center">
+            <h2>Everything you love about going out, with no more waiting in line.</h2>
+            <ul class="underline">
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+        </div>
+    </div>
+    <div class="row mt40">
+        <div class="col-md-6 col-sm-6 col-xs-12" ng-repeat="city in showcaseCities">
+            <div class="holder">
+                <span class="fadeInDown animated">[[city.title]]</span>
+                <button class="btn-browse fadeInDown animated">Browse Venues</button>
+            <a ng-click="browseCity(city)" href="javascript:;">
+            <p>[[city.title]]</p>
+            <img class="img-responsive" src="/static/img/[[city.imgSrc]]" alt="">
+            </a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid blp_abt">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12 text-center">
+                <h2>About BLP</h2>
+                <ul class="underline">
+                  <li></li>
+                  <li></li>
+                  <li></li>
+              </ul>
+                <h3>BLP, or BarLinePass provides bargoers the ability to purchase tickets to skip the line at their favorite venues. No more planning around lines or wondering if you’ll get in. With a click of a few buttons and a little cash up front, you guarantee yourself a great night out! </h3>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid blp">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <a href="#" class="icon-pass"></a>
+            </div>
+        </div>
+        <div class="row mt40">
+            <div class="col-md-12 col-sm-12 col-xs-12 text-center">
+                <h2>Tell us what bar BLP should partner with next</h2>
+                <a class="btn-blue-outline hvr-radial-out mt30" data-toggle="modal" data-target="#emailContactUsModal" style="cursor:pointer;">EMAIL US</a>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>

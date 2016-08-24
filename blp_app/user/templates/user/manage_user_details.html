@@ -1,0 +1,225 @@
+{% load mathfilters %}
+<div class="clearfix"></div>
+<div id="content">
+<div class="container-fluid myAcc-user" ng-controller="blpAppUserDetailsController">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="tab_outer">
+
+              <!-- Nav tabs -->
+              <ul class="nav nav-tabs responsive-tabs">
+                <li class="active"><a href="#myacc">My Account</a></li>
+                <li><a href="#booking">Booking</a></li>
+                <li><a href="#history" >Payment History</a></li>
+              </ul>
+
+              <!-- Tab panes -->
+              <div class="tab-content">
+                <div id="warn_box" style="left: 7.5px; display: block; text-align: center; width: 100%;">
+                    <div class="success" style="color:green;"></div>
+                    <div class="warning"></div>
+                    <div class="error" style="color:red;"></div>
+                </div>
+                <div class="tab-pane active" id="myacc">
+                    <div class="row ">
+                        <div class="col-md-3 col-sm-12 col-xs-12 text-center leftacc-tab">
+                        <!-- D&D Markup -->
+                            <div class="fileinputs">
+                                <input type="file" size="1/" class="file" id="photoUpload" name="picture">
+                                <div class="fakefile" style="margin-left: -131px; left: 150px; top: 32px; width: 280px;" ng-repeat="photo in photos">
+                                    <img src="[[getPhotoLink(photo)]]" width="88%" height="197px;" align="middle" alt="browse" title="browse"/>
+                                </div>
+                                <div class="fakefile">
+                                    <img src="/static/img/icon-add.png" align="middle" alt="browse" title="browse"/>
+                                </div>
+                            </div>
+                           <!-- /D&D Markup -->
+                        </div>
+
+                        <div class="col-md-8 col-sm-12 col-xs-12 Rightacc-tab">
+                            <div class="row input-outer">
+                                <div class="form-group col-md-3 col-sm-12 col-xs-12 ">
+                                     <label>First Name<span class="field-required">*</span></label>
+                                </div>
+                                <div class="form-group col-md-9 col-sm-12 col-xs-12">
+                                <input class="form-control" placeholder="First Name" id="customerFirstName" type="text" value="[[blp_customer_first_name]]" />
+                                </div>
+                            </div>
+                            <div class="row input-outer">
+                                <div class="form-group col-md-3 col-sm-12 col-xs-12 ">
+                                     <label>Last Name<span class="field-required">*</span></label>
+                                </div>
+                                <div class="form-group col-md-9 col-sm-12 col-xs-12">
+                                <input class="form-control" placeholder="Last Name" id="customerLastName" type="text" value="[[blp_customer_last_name]]" />
+                                </div>
+                            </div>
+                            <div class="row input-outer">
+                                <div class="form-group col-md-3 col-sm-12 col-xs-12 ">
+                                     <label>Phone No<span class="field-required">*</span></label>
+                                </div>
+                                <div class="form-group col-md-9 col-sm-12 col-xs-12">
+                                <input class="form-control" placeholder="Phone No" id="customerPhoneNumber" type="text" value="[[blp_customer_phone_number]]" />
+                                </div>
+                            </div>
+                            <div class="row input-outer">
+                                <div class="form-group col-md-3 col-sm-12 col-xs-12 ">
+                                     <label>Email</label>
+                                </div>
+                                <div class="form-group col-md-9 col-sm-12 col-xs-12">
+                                 <input class="form-control" placeholder="Email" type="email" id="customerEmail" value="[[blp_customer_email]]" />
+                                </div>
+                            </div>
+                            <div class="row input-outer">
+                                <div class="form-group col-md-3 col-sm-12 col-xs-12 ">
+                                     <label>Registration Date</label>
+                                </div>
+                                <div class="form-group col-md-9 col-sm-12 col-xs-12">
+                                 <label>[[blp_customer_created_date]]</label>
+
+                                </div>
+                            </div>
+                            <div class="row text-center">
+                                <div class="form-group col-md-3 col-sm-12 col-xs-12 ">
+                                </div>
+                                <div class="form-group col-md-9 col-sm-12 col-xs-12 ">
+                                    <button class="btn-blue-outline btn-save hvr-radial-out mrgR20" ng-click="updateUserDetails()" >Save</button>
+                                    <!-- <button class="btn-blue-outline btn-save hvr-radial-out">Change Password</button> -->
+                                    <button type="button" class="btn-blue-outline btn-save hvr-radial-out" data-toggle="modal" data-target="#myModal">Change Password</button>
+                                </div>
+                            </div>
+
+                            <!-- Modal -->
+                            <div class="modal fade venue-login chgPass" id="myModal" role="dialog">
+                                <div class="modal-dialog text-center">
+                                    <!-- Modal content-->
+                                    <div class="modal-content">
+                                        <button type="button" class="closeImg" data-dismiss="modal"><img src="/static/img/close-icon.png" alt="Image"></button>
+                                        <div class="VenueLogin">
+                                            <div class="row">
+                                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                                    <h1>Change Password</h1>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                                    <ul class="underline">
+                                                        <li></li>
+                                                        <li></li>
+                                                        <li></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div id="popup_warn_box" style="left: 7.5px; display: block; text-align: center; width: 100%;">
+                                                <div class="success" style="color:green;"></div>
+                                                <div class="warning"></div>
+                                                <div class="error" style="color:red;"></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                                    <div class="form-group">
+                                                        <input type="password" class="form-control" id="oldPassword" placeholder="Old Password">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                                    <div class="form-group">
+                                                        <input type="password" class="form-control" id="newPassword" placeholder="New Password">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                                    <div class="form-group">
+                                                        <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                                    <button class="btn-blue hvr-sweep-to-top" ng-click="changeUserPass()">SAVE</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End Modal -->
+
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane" id="booking">
+                    <div class="table-booking">
+                        <table  id="bookinglist" cellpadding="0" cellspacing="0">
+                            <tr>
+                                <th>Purchase Date/Time</th>
+                                <th>Ticket Date</th>
+                                <th>Quantity</th>
+                                <th>Amount</th>
+                                <th>Bar Name</th>
+                            </tr>
+                            <tr ng-repeat="booking in bookings" ng-click="getBookingDetails(booking.pk);" style="cursor: pointer;">
+                                <td> [[booking.fields.blp_merchant_event_sale_payment_date | date : 'MM-dd-yyyy HH:mm:ss']] </td>
+                                <td> [[booking.fields.blp_merchant_event_sale_date | date : 'MM-dd-yyyy']] </td>
+                                <td> [[booking.fields.blp_merchant_event_sale_qty]] </td>
+                                <td> [[booking.fields.blp_merchant_event_sale_amount]] </td>
+                                <td> [[booking.fields.blp_merchant.name]] </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="bdeatil2">
+                        <h3>Booking Details</h3>
+                        <div class="table-booking">
+                            <table cellpadding="0" cellspacing="0">
+                                <tr>
+                                    <th>Sale Date/Time</th>
+                                    <th>Ticket Date</th>
+                                    <th>Ticket Number</th>
+                                    <th>Scanned Date/Time</th>
+                                    <th>Ticket Status</th>
+                                </tr>
+                                <tr ng-repeat="booking_detail in blp_customer_booking_details_data"  >
+                                    <td>[[booking_detail.fields.blp_merchant_event_sale_payment_date | date : 'MM-dd-yyyy HH:mm:ss']]</td>
+                                    <td>[[booking_detail.fields.blp_merchant_event_sale_date | date : 'MM-dd-yyyy']]</td>
+                                    <td>[[booking_detail.fields.blp_merchant_event_sale_qty_number]]</td>
+                                    <td>[[booking_detail.fields.blp_merchant_event_sale_scan_date | date : 'MM-dd-yyyy HH:mm:ss']]</td>
+                                    <td>[[booking_detail.fields.blp_merchant_event_sale_scan_status]]</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane" id="history">
+                    <div class="table-booking">
+                        <table cellpadding="0" cellspacing="0">
+                            <tr>
+                                <th>Purchase Date/Time</th>
+                                <th>Ticket Date</th>
+                                <th>Bar Name</th>
+                                <th>Purchase Quantity</th>
+                                <th>Price</th>
+                            </tr>
+                            <tr ng-repeat="booking in bookings">
+                                <td>[[booking.fields.blp_merchant_event_sale_payment_date | date : 'MM-dd-yyyy HH:mm:ss']]</td>
+                                <td> [[booking.fields.blp_merchant_event_sale_date | date : 'MM-dd-yyyy']] </td>
+                                <td> [[booking.fields.blp_merchant.name]] </td>
+                                <td> [[booking.fields.blp_merchant_event_sale_qty]]</td>
+                                <td>$ [[booking.fields.blp_merchant_event_sale_amount]]</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+</div>
+</div>
+<script>
+$('.responsive-tabs').responsiveTabs({
+  accordionOn: ['xs', 'sm']
+});
+</script>

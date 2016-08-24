@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>BarLinePass</title>
+</head>
+<body>
+
+     
+        <div class="panel-heading">
+            <h3 class="panel-title">Make Payment</h3>
+        </div>
+<form action="/paypal_thanks/" method="POST">
+    <!-- CREDIT CARD FORM STARTS HERE -->
+    <div class="panel panel-default credit-card-box">
+        <div class="panel-body">
+            <form role="form" id="payment-form" method="POST" action="javascript:void(0);">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="form-group">
+                            <label for="card_type">CARD TYPE</label>
+                            <div class="display-td col-xs-5 col-md-5 pull-right" >                           
+                                <img class="img-responsive pull-right" src="https://i76.imgup.net/accepted_c22e0.png">
+                            </div>
+                            <select class="form-control" id="card_type" name="card_type">
+                                <option>Visa</option>
+                                <option>Master Card</option>
+                            </select>
+                        </div>                     
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="card_number">CARD NUMBER</label>
+                    <input type="text" class="form-control" id="card_number" placeholder="Card Number">
+                </div>
+
+
+                <div class="row">
+                    <div class="col-xs-7 col-md-7">
+                        <div class="form-group">
+                            <label for="card_xpiry"><span class="hidden-xs">EXPIRY</span><span class="visible-xs-inline">EXP</span> DATE</label>
+                            <input
+                                type="tel"
+                                class="form-control"
+                                name="card_xpiry"
+                                placeholder="MM / YY"
+                                autocomplete="cc-exp"/>
+                        </div>
+                    </div>
+                    <div class="col-xs-5 col-md-5 pull-right">
+                        <div class="form-group">
+                            <label for="card_cvc">CVV</label>
+                            <input
+                                type="tel"
+                                class="form-control"
+                                name="card_cvc"
+                                placeholder="CVC"
+                                autocomplete="cc-csc"
+                                required
+                            />
+                        </div>
+                    </div>
+                </div>
+              
+                <div class="row">
+                    <div class="col-xs-12">
+<!--                         <button class="subscribe btn btn-success" type="submit">Make Payment</button> -->
+                        <input type="submit" value="Make Payment"/>
+                    </div>
+                </div>
+                <div class="row" style="display:none;">
+                    <div class="col-xs-12">
+                        <p class="payment-errors"></p>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>           
+            <!-- CREDIT CARD FORM ENDS HERE -->
+       
+</form>
+
+                      
+</body>
+
+</html>
+
+

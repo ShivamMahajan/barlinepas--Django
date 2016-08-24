@@ -1,0 +1,52 @@
+  <div class="container-fluid banner">
+    <div class="container">
+
+    </div>
+</div>
+<div id="content">
+<div class="container city">
+      <div>
+        <div class='validation-receipt'>
+        {% if response == 'confirm' %}
+          <hr />
+          <div style='qrcode-validation-box {{status}}'>
+            <h3>QR Code Status</h3>
+            <h4 style="color:green;">{{msg}}</h4>
+          </div>
+        <hr />
+        <div class='inner-details'>
+          <small>Event Receipt</small>
+          <h4>Sale Quantity: <small>{{sale.blp_merchant_event_sale_qty}}</small></h4>
+          <h4>Customer Email: <small>{{customer.blp_customer_email}}</small></h4>
+      <h4>Date: {{ saleDate|date:"M d Y"  }}</h4>
+          <br/>
+          <hr/>
+      <small>Listing Details</small>
+          <h4>Total tickets sold for {{ saleDate|date:"M d Y" }} : {{ totalTicketsSold }}</h4>
+      <h4>Total tickets scanned for {{ saleDate|date:"M d Y" }}: {{ totalTicketsScanned }}</h4>
+      <!-- <h4>Available tickets: <small>{{ totalTicketsAvailable }}</small></h4> -->
+      <h4>Remaining outstanding tickets for {{ saleDate|date:"M d Y" }}: {{ qtyRemaining }}</h4>
+
+        </div>
+      {% else %}
+        <hr />
+          <div style='qrcode-validation-box {{status}}'>
+            <h3>QR Code Status</h3>
+            <small style="color:red;">{{msg}}</small>
+          </div>
+        <hr />
+        <div class='inner-details'>
+          <h2>&nbsp;</h2>
+          <h2>&nbsp;</h2>
+          <br/>
+          <h2>&nbsp;</h2>
+          <h2>&nbsp;</h2>
+          <h5>&nbsp;</h5>
+        </div>
+      {% endif %}
+       </div>
+      </div>
+</div>
+
+</div>
+</div>
